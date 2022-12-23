@@ -1,0 +1,20 @@
+.layout-builder-block {
+  background-color: #fff0;
+}
+
+.vertical-align-start,.vertical-align-center,.vertical-align-end {
+  display: flex;
+  flex-direction: column;
+}
+
+.vertical-align-start {
+  justify-content: flex-start;
+}
+
+.vertical-align-center {
+  justify-content: center;
+}
+
+.vertical-align-end {
+  justify-content: flex-end;
+}

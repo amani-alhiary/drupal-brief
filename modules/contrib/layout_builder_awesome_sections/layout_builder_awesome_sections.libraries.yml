@@ -1,0 +1,4 @@
+layout_builder_awesome_sections:
+  css:
+    theme:
+      css/style.css: { }

@@ -1,0 +1,81 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a two-column layout.
+ *
+ * Available variables:
+ * - content: The content for this layout.
+ * - attributes: HTML attributes for the layout <div>.
+ *
+ * @ingroup themeable
+ */
+#}
+{% if content %}
+  <div class="section-wrapper" style="background-color: {{ content['#settings']['section_properties']['background_color'] }};{{ content['#settings']['background_image_style'] }}">
+    <div{{ attributes }}>
+      {% for region_name in layout.regions|keys %}
+        {% if content[region_name] %}
+          <div {{ region_attributes[region_name].addClass('layout__region', 'layout__region--' ~ region_name) }}>
+            {{ content[region_name] }}
+            {% if settings[region_name]['display_background_color'] == 1 %}
+              {% set region_class = 'layout__region--' ~ region_name %}
+              <style>
+                .uuid-{{ content['#settings']['uuid'] }} .{{ region_class }}:before {
+                  content: "";
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                  background-color: {{ settings[region_name]['background_color_rgba'] }};
+                }
+
+                {#/*Regioin mobile Style*/#}
+                {% if settings[region_name]['mobile_style'] is not empty %}
+                @media screen and (max-width: {{ content['#settings']['section_properties']['mobile_breakpoint'] }}px) {
+                  .uuid-{{ content['#settings']['uuid'] }} .{{ region_class }} {
+                  {{ settings[region_name]['mobile_style'] }};
+                  }
+                }
+
+                {% endif %}
+              </style>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+<style>
+  {% if content['#settings']['section_properties']['mobile_breakpoint'] %}
+  {% set mobile_wrapper_class = 'mobile-breakpoint-' ~ content['#settings']['section_properties']['mobile_breakpoint'] %}
+  @media screen and (min-width: {{ content['#settings']['section_properties']['mobile_breakpoint'] }}px) {
+    .uuid-{{ content['#settings']['uuid'] }} .awesome-gutter {
+      padding-left: {{ content['#settings']['section_properties']['half_gutter'] }}px;
+      padding-right: {{ content['#settings']['section_properties']['half_gutter'] }}px;
+    }
+
+    .uuid-{{ content['#settings']['uuid'] }} .awesome-gutter-left {
+      padding-left: {{ content['#settings']['section_properties']['half_gutter'] }}px;
+    }
+
+    .uuid-{{ content['#settings']['uuid'] }} .awesome-gutter-right {
+      padding-right: {{ content['#settings']['section_properties']['half_gutter'] }}px;
+    }
+  }
+
+  @media screen and (max-width: {{ content['#settings']['section_properties']['mobile_breakpoint'] }}px) {
+    .uuid-{{ content['#settings']['uuid'] }}.{{ mobile_wrapper_class }} {
+      flex-direction: column;
+    {#/*Section mobile Style*/#}{{ content['#settings']['section_properties']['mobile_style'] }};
+    }
+
+    .uuid-{{ content['#settings']['uuid'] }}.{{ mobile_wrapper_class }} .layout__region {
+      width: 100% !important;
+    }
+  }
+
+  {% endif %}
+</style>

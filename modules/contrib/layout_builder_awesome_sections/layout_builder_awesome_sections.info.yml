@@ -1,0 +1,12 @@
+name: Layout builder awesome sections
+type: module
+description: Add some awesome sections which has many useful configuration which let you build site structure with no custom code
+package: Layout Builder
+core_version_requirement: ^8.8 || ^9
+dependencies:
+  - drupal:layout_builder
+
+# Information added by Drupal.org packaging script on 2021-07-20
+version: '1.2.1'
+project: 'layout_builder_awesome_sections'
+datestamp: 1626773603

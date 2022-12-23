@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * Implements hook_layout_alter().
+ */
+function layout_builder_awesome_sections_layout_alter(&$definitions) {
+  if (isset($definitions['layout_onecol'])) {
+    /** @var \Drupal\Core\Layout\LayoutDefinition $definition_onecol */
+    $definition_onecol = &$definitions['layout_onecol'];
+    $definition_onecol->setClass("Drupal\layout_builder_awesome_sections\Plugin\Layout\AwesomeLayout");
+    $definition_onecol->setLibrary('layout_builder_awesome_sections/layout_builder_awesome_sections');
+    $definition_onecol->setTemplatePath(drupal_get_path('module', 'layout_builder_awesome_sections').'/layouts/awesome_section');
+    $definition_onecol->setTemplate('layout--awesome-section');
+  }
+}

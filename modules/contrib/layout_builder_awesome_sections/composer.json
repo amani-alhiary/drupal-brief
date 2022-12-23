@@ -1,0 +1,14 @@
+{
+    "name": "drupal/layout_builder_awesome_sections",
+    "type": "drupal-module",
+    "description": "layout_builder_awesome_sections.",
+    "homepage": "http://drupal.org/project/layout_builder_awesome_sections",
+    "license": "GPL-2.0+",
+    "require": {
+        "drupal/core": "^8.9 || ^9",
+        "mexitek/phpcolors": "^1.0",
+        "neilime/php-css-lint": "^3.0"
+    },
+    "require-dev": {},
+    "minimum-stability": "dev"
+}
